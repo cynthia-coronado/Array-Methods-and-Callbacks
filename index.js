@@ -89,13 +89,13 @@ hint: the strings returned need to exactly match the string in step 4.
  */
 
 function getWinnersByYear(array, callBackYears, callBackWinners) {
-    // const winnerString = array(callBackWinners, callBackYears).map(function(item){
-    //     return `In ${Year}, ${['Home ']} won the world cup!`
- //})
- //console.log(callBackYears(array));
- //console.log(callBackWinners(array));
+//     const winnerString = .map(function(item){
+//         return `In ${Year}, ${['Home ']} won the world cup!`
+//  })
+//  console.log(callBackYears(array));
+//  console.log(callBackWinners(array));
 }
- console.log(getWinnersByYear(fifaData, getYears, getWinners));
+ console.log(getWinnersByYear(getYears(fifaData, getFinals), getWinners(fifaData, getFinals)));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -108,13 +108,16 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(callBack) {
-//    const homeGoals = callBack.reduce(function(accumulator,item){
-//        return accumulator + item['Home Team Goals'];
-//    },0);
-//    return homeGoals;
+function getAverageGoals(getFinalsCB) {
+   const homeGoals = getFinalsCB.reduce(function(accumulator,item){
+       return accumulator + item['Home Team Goals'];
+   },0);
+   const awayGoals = getFinalsCB.reduce(function(accumulator, item){
+       return accumulator + item['Away Team Goals'];
+   },0);
+   return (homeGoals + awayGoals) / getFinalsCB.length;
 }
-
+console.log(getAverageGoals(getFinals(fifaData)));
 
 
 
